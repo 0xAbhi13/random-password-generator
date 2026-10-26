@@ -1,0 +1,532 @@
+/* ============================================================
+   Random Password Generator - style.css
+   Light, modern, responsive theme with blue & orange accents.
+   ============================================================ */
+
+:root {
+  --bg-1: #f7f9fc;
+  --bg-2: #eef2f8;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-soft: #dbeafe;
+  --orange: #f97316;
+  --orange-soft: #ffedd5;
+  --border: #e2e8f0;
+  --danger: #dc2626;
+  --danger-soft: #fee2e2;
+  --success: #16a34a;
+  --success-soft: #dcfce7;
+  --warn: #f97316;
+  --shadow: 0 20px 50px -20px rgba(37, 99, 235, 0.2);
+  --radius: 24px;
+  --radius-sm: 16px;
+  --radius-xs: 10px;
+  --transition: 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Segoe UI", "Inter", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 10% -10%, #dbeafe 0%, transparent 60%),
+    radial-gradient(900px 500px at 100% 10%, #ffedd5 0%, transparent 55%),
+    linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px 80px;
+  overflow-x: hidden;
+}
+
+/* ---------- Page / Card ---------- */
+.page {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 32px 28px;
+  box-shadow: var(--shadow);
+  animation: rise 0.6s var(--transition) both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card__header {
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  color: var(--blue);
+}
+
+.brand__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.title {
+  margin: 6px 0 0;
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(120deg, var(--blue), var(--orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+/* ---------- Password display ---------- */
+.password-display {
+  margin-bottom: 8px;
+}
+
+.password-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.password-field {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  font-family: "Consolas", "SF Mono", "Menlo", monospace;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  background: #f8fafc;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.password-field.is-new {
+  animation: pop 0.32s var(--transition) both;
+}
+
+@keyframes pop {
+  from { transform: scale(0.98); opacity: 0.6; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.password-field:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-soft);
+}
+
+.password-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+
+.icon-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.icon-btn:active {
+  transform: translateY(0);
+}
+
+.icon-btn:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.status {
+  min-height: 1.4em;
+  margin: 8px 0 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--blue);
+  text-align: left;
+}
+
+.status.is-error {
+  color: var(--danger);
+}
+
+.status.is-success {
+  color: var(--success);
+}
+
+/* ---------- Strength ---------- */
+.strength {
+  margin: 8px 0 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fafbfe;
+}
+
+.strength__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.strength__title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.strength__label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.strength__meter {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.strength__bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: var(--muted);
+  transition: width var(--transition), background var(--transition);
+}
+
+.strength__note {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* ---------- Settings ---------- */
+.settings {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 18px 18px 16px;
+  margin: 0;
+}
+
+.settings legend {
+  padding: 0 8px;
+  font-weight: 700;
+  color: var(--blue);
+  font-size: 0.95rem;
+}
+
+.length-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.length-row__label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.length-row input[type="range"] {
+  width: 100%;
+  accent-color: var(--blue);
+}
+
+.length-row input[type="number"] {
+  width: 72px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  font: inherit;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.length-row input[type="number"]:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-soft);
+}
+
+.length-value {
+  min-width: 28px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.options {
+  margin-bottom: 12px;
+}
+
+.options__label {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+  user-select: none;
+}
+
+.option:hover {
+  border-color: var(--blue);
+  background: var(--blue-soft);
+}
+
+.option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--blue);
+  cursor: pointer;
+}
+
+.option span {
+  font-size: 0.95rem;
+}
+
+.summary {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 10px 0 14px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+.summary__label {
+  font-weight: 600;
+}
+
+.summary__value {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.settings-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--radius-xs);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition), filter var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+
+.btn--primary {
+  color: #fff;
+  background: linear-gradient(120deg, var(--blue), #3b82f6);
+  box-shadow: 0 8px 20px -10px rgba(37, 99, 235, 0.5);
+}
+
+.btn--primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.btn--ghost {
+  color: var(--blue);
+  background: #fff;
+  border: 1px solid var(--border);
+}
+
+.btn--ghost:hover {
+  transform: translateY(-1px);
+  border-color: var(--blue);
+  background: var(--blue-soft);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.validation {
+  min-height: 1.4em;
+  margin: 12px 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--danger);
+  text-align: center;
+}
+
+.validation:empty {
+  display: none;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  position: relative;
+  z-index: 1;
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ---------- Utilities ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .card {
+    padding: 28px 20px 22px;
+  }
+  .password-row {
+    flex-wrap: wrap;
+  }
+  .password-field {
+    width: 100%;
+    flex-basis: 100%;
+  }
+  .password-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+  .icon-btn {
+    flex: 1 1 auto;
+  }
+  .length-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .length-row input[type="range"] {
+    width: 100%;
+  }
+  .settings-actions .btn {
+    width: 100%;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Focus ---------- */
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}

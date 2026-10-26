@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Random Password Generator</title>
+  <meta name="description" content="A secure random password generator built with HTML5, CSS3, and vanilla JavaScript using crypto.getRandomValues()." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="card" aria-labelledby="pageTitle">
+      <header class="card__header">
+        <div class="brand">
+          <span class="brand__icon" aria-hidden="true">
+            <!-- Shield / lock icon -->
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2 4 5v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V5l-8-3z" />
+              <rect x="9" y="11" width="6" height="7" rx="1" />
+              <path d="M10 11V9a2 2 0 1 1 4 0v2" />
+            </svg>
+          </span>
+          <p class="eyebrow">Veda Technology Internship</p>
+        </div>
+        <h1 id="pageTitle" class="title">Random Password Generator</h1>
+        <p class="subtitle">Generate strong, unpredictable passwords with secure randomness and full control over character types.</p>
+      </header>
+
+      <!-- Generated password display -->
+      <div class="password-display" role="group" aria-labelledby="passwordLabel">
+        <label id="passwordLabel" for="passwordField" class="sr-only">Generated password</label>
+        <div class="password-row">
+          <input
+            type="password"
+            id="passwordField"
+            class="password-field"
+            readonly
+            autocomplete="off"
+            spellcheck="false"
+            aria-live="polite"
+            aria-describedby="copyStatus"
+            placeholder="Click Generate Password"
+          />
+          <div class="password-actions">
+            <button type="button" id="toggleVisibilityBtn" class="icon-btn" aria-label="Hide password" aria-pressed="true" title="Toggle visibility">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </button>
+            <button type="button" id="copyBtn" class="icon-btn" aria-label="Copy password" title="Copy password">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <span>Copy</span>
+            </button>
+            <button type="button" id="regenerateBtn" class="icon-btn" aria-label="Regenerate password" title="Regenerate">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="23 4 23 10 17 10" />
+                <path d="M20.5 15a9 9 0 1 1-2.1-9.4L23 10" />
+              </svg>
+              <span>Regenerate</span>
+            </button>
+          </div>
+        </div>
+        <p id="copyStatus" class="status" role="status" aria-live="polite"></p>
+      </div>
+
+      <!-- Strength indicator -->
+      <div class="strength" aria-labelledby="strengthHeading">
+        <div class="strength__header">
+          <h2 id="strengthHeading" class="strength__title">Password strength</h2>
+          <span id="strengthLabel" class="strength__label" aria-live="polite">—</span>
+        </div>
+        <div class="strength__meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-labelledby="strengthHeading">
+          <div id="strengthBar" class="strength__bar"></div>
+        </div>
+        <p class="strength__note">Estimate based on length and character variety. Not a guarantee of security.</p>
+      </div>
+
+      <!-- Settings -->
+      <fieldset class="settings">
+        <legend>Settings</legend>
+
+        <div class="length-row">
+          <label for="lengthSlider" class="length-row__label">Password length</label>
+          <input type="range" id="lengthSlider" min="4" max="64" value="12" aria-describedby="lengthValue" />
+          <input type="number" id="lengthNumber" min="4" max="64" value="12" aria-label="Password length (numeric)" />
+          <output id="lengthValue" class="length-value" for="lengthSlider lengthNumber">12</output>
+        </div>
+
+        <div class="options" role="group" aria-labelledby="optionsLabel">
+          <p id="optionsLabel" class="options__label">Character types</p>
+          <label class="option">
+            <input type="checkbox" id="optUpper" checked />
+            <span>Uppercase (A–Z)</span>
+          </label>
+          <label class="option">
+            <input type="checkbox" id="optLower" checked />
+            <span>Lowercase (a–z)</span>
+          </label>
+          <label class="option">
+            <input type="checkbox" id="optNumbers" checked />
+            <span>Numbers (0–9)</span>
+          </label>
+          <label class="option">
+            <input type="checkbox" id="optSymbols" />
+            <span>Symbols (!@#$%^&amp;*…)</span>
+          </label>
+        </div>
+
+        <div class="summary">
+          <span class="summary__label">Selected types:</span>
+          <span id="settingsSummary" class="summary__value">—</span>
+        </div>
+
+        <div class="settings-actions">
+          <button type="button" id="generateBtn" class="btn btn--primary">Generate Password</button>
+          <button type="button" id="resetBtn" class="btn btn--ghost">Reset Settings</button>
+        </div>
+      </fieldset>
+
+      <p id="validationMsg" class="validation" role="alert" aria-live="assertive"></p>
+    </section>
+  </main>
+
+  <footer class="footer">Built by Abhishek Jadhav | Veda Technology Internship — Day 17</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
