@@ -15,10 +15,6 @@
 
 ---
 
-Random Password Generator by **Abhishek Jadhav** &mdash; Web Developer and first-year BCA student at VIIT, Baramati. Built with **HTML5 + CSS3 + Vanilla JavaScript**: generate strong, unpredictable passwords with secure randomness, customizable length and character types, strength estimation, copy-to-clipboard, and show/hide. No frameworks, no build step, no backend.
-
-> **Internship attribution:** 45-day Web Development Internship at **Veda Technology** &mdash; Day 17: Random Password Generator.
-
 ## Features
 
 <div align="center">
@@ -81,34 +77,3 @@ internship-task-17/
 1. Open `index.html` directly in any modern browser (Chrome, Edge, Firefox, Safari).
 2. No build step, no server, no dependencies.
 3. Resize the window or use DevTools device mode to test desktop, tablet, and mobile widths.
-
-## Testing Checklist
-
-- [x] Default password generates correctly.
-- [x] Slider and numeric input stay synchronized.
-- [x] Each character checkbox works independently.
-- [x] Every enabled category is represented when possible.
-- [x] Password length always matches the selected length.
-- [x] No selected character types produce a clear error.
-- [x] Copying works with success/error feedback.
-- [x] Show/hide toggling works.
-- [x] Strength meter updates correctly.
-- [x] Layout works on mobile and desktop.
-- [x] No console errors during normal use.
-
-## Limitations
-
-- Strength is an estimate, not a guarantee of security.
-- No password history, breach checking, or persistence.
-- Symbol set is fixed (not user-editable).
-
-## Git Commands
-
-```bash
-git init
-git add .
-git commit -m "Add Day 17 Random Password Generator"
-git branch -M main
-git remote add origin https://github.com/0xAbhi13/random-password-generator.git
-git push -u origin main
-```
